@@ -1,0 +1,342 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Sora:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.75rem;
+
+    /* EDICERA: Deep navy + electric indigo + warm amber */
+    /* Background: dark navy */
+    --background: 0.10 0.022 265;
+    --foreground: 0.95 0.008 250;
+
+    /* Cards: slightly lighter navy with blue cast */
+    --card: 0.13 0.025 262;
+    --card-foreground: 0.94 0.008 252;
+
+    --popover: 0.15 0.028 260;
+    --popover-foreground: 0.95 0.008 250;
+
+    /* Primary: Electric indigo / violet */
+    --primary: 0.62 0.22 272;
+    --primary-foreground: 0.97 0.005 0;
+
+    --secondary: 0.18 0.030 260;
+    --secondary-foreground: 0.90 0.010 250;
+
+    --muted: 0.20 0.025 258;
+    --muted-foreground: 0.58 0.045 258;
+
+    --accent: 0.22 0.035 260;
+    --accent-foreground: 0.95 0.008 250;
+
+    /* Destructive: vivid red */
+    --destructive: 0.63 0.24 22;
+    --destructive-foreground: 0.97 0.005 0;
+
+    --border: 0.25 0.032 258;
+    --input: 0.22 0.030 258;
+    --ring: 0.62 0.22 272;
+
+    /* Chart colors */
+    --chart-1: 0.75 0.20 60;
+    --chart-2: 0.62 0.22 272;
+    --chart-3: 0.68 0.18 155;
+    --chart-4: 0.65 0.20 340;
+    --chart-5: 0.72 0.18 195;
+
+    /* Sidebar: even deeper navy */
+    --sidebar: 0.08 0.020 264;
+    --sidebar-foreground: 0.90 0.010 250;
+    --sidebar-primary: 0.62 0.22 272;
+    --sidebar-primary-foreground: 0.97 0.005 0;
+    --sidebar-accent: 0.16 0.028 260;
+    --sidebar-accent-foreground: 0.92 0.010 250;
+    --sidebar-border: 0.18 0.025 258;
+    --sidebar-ring: 0.62 0.22 272;
+
+    /* Custom semantic tokens */
+    --amber: 0.78 0.19 62;
+    --amber-soft: 0.75 0.20 60;
+    --indigo: 0.62 0.22 272;
+    --indigo-bright: 0.68 0.24 272;
+    --teal: 0.68 0.18 185;
+    --success: 0.70 0.16 148;
+    --warning: 0.78 0.18 72;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Sora", "Plus Jakarta Sans", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Plus Jakarta Sans", "Sora", system-ui, sans-serif;
+  }
+}
+
+/* ─── Custom scrollbar ─────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: oklch(var(--border));
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(var(--muted-foreground));
+}
+
+/* ─── Gradient text utility ─────────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(
+    135deg,
+    oklch(0.78 0.19 62) 0%,
+    oklch(0.68 0.24 272) 50%,
+    oklch(0.72 0.20 320) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-blue {
+  background: linear-gradient(
+    135deg,
+    oklch(0.68 0.24 272) 0%,
+    oklch(0.72 0.20 240) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Grid dot texture ──────────────────────────────────────── */
+.dot-texture {
+  background-image: radial-gradient(
+    circle,
+    oklch(0.35 0.04 262 / 0.5) 1px,
+    transparent 1px
+  );
+  background-size: 24px 24px;
+}
+
+.grid-texture {
+  background-image:
+    linear-gradient(oklch(var(--border) / 0.25) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(var(--border) / 0.25) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ─── Glass morphism card ─────────────────────────────────── */
+.glass {
+  background: oklch(var(--card) / 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid oklch(var(--border) / 0.6);
+}
+
+.glass-bright {
+  background: oklch(0.16 0.030 260 / 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* ─── Glow effects ─────────────────────────────────────────── */
+.glow-indigo {
+  box-shadow:
+    0 0 20px oklch(0.62 0.22 272 / 0.25),
+    0 0 6px oklch(0.62 0.22 272 / 0.15);
+}
+
+.glow-amber {
+  box-shadow:
+    0 0 20px oklch(0.78 0.19 62 / 0.3),
+    0 0 6px oklch(0.78 0.19 62 / 0.15);
+}
+
+.glow-border-indigo {
+  border-color: oklch(0.62 0.22 272 / 0.5);
+  box-shadow: 0 0 0 1px oklch(0.62 0.22 272 / 0.2);
+}
+
+/* ─── Priority badges ──────────────────────────────────────── */
+.priority-high {
+  background: oklch(0.63 0.24 22 / 0.18);
+  color: oklch(0.80 0.18 22);
+  border: 1px solid oklch(0.63 0.24 22 / 0.35);
+}
+.priority-medium {
+  background: oklch(0.78 0.19 62 / 0.18);
+  color: oklch(0.88 0.15 62);
+  border: 1px solid oklch(0.78 0.19 62 / 0.35);
+}
+.priority-low {
+  background: oklch(0.70 0.16 148 / 0.18);
+  color: oklch(0.80 0.13 148);
+  border: 1px solid oklch(0.70 0.16 148 / 0.35);
+}
+
+/* ─── Attendance badges ─────────────────────────────────────── */
+.attended-badge {
+  background: oklch(0.70 0.16 148 / 0.18);
+  color: oklch(0.80 0.13 148);
+  border: 1px solid oklch(0.70 0.16 148 / 0.35);
+}
+.absent-badge {
+  background: oklch(0.63 0.24 22 / 0.15);
+  color: oklch(0.78 0.16 22);
+  border: 1px solid oklch(0.63 0.24 22 / 0.3);
+}
+
+/* ─── Skeleton shimmer ──────────────────────────────────────── */
+@keyframes shimmer {
+  0% { background-position: -600px 0; }
+  100% { background-position: 600px 0; }
+}
+.skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    oklch(var(--muted) / 0.8) 25%,
+    oklch(var(--accent)) 50%,
+    oklch(var(--muted) / 0.8) 75%
+  );
+  background-size: 600px 100%;
+  animation: shimmer 1.6s ease-in-out infinite;
+}
+
+/* ─── Gradient border card ─────────────────────────────────── */
+.gradient-border {
+  position: relative;
+  border: 1px solid transparent;
+  background-clip: padding-box;
+}
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    oklch(0.62 0.22 272 / 0.4),
+    oklch(0.78 0.19 62 / 0.3),
+    oklch(0.62 0.22 272 / 0.1)
+  );
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* ─── Animated underline nav ─────────────────────────────────── */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: oklch(0.62 0.22 272);
+  border-radius: 99px;
+  transition: width 0.25s ease;
+}
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* ─── Card hover shine ──────────────────────────────────────── */
+.card-shine {
+  position: relative;
+  overflow: hidden;
+}
+.card-shine::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    transparent 40%,
+    oklch(1 0 0 / 0.03) 60%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.card-shine:hover::after {
+  opacity: 1;
+}
+
+/* ─── Hero gradient blob ──────────────────────────────────── */
+.hero-blob-1 {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at center,
+    oklch(0.62 0.22 272 / 0.12) 0%,
+    transparent 70%
+  );
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+.hero-blob-2 {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at center,
+    oklch(0.78 0.19 62 / 0.10) 0%,
+    transparent 70%
+  );
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+/* ─── Stat card hover gradient border ──────────────────────── */
+@keyframes border-rotate {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ─── Count-up number animation ─────────────────────────────── */
+.stat-number {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+}
+
+/* ─── Mobile bottom nav active dot ──────────────────────────── */
+.bottom-nav-active {
+  background: oklch(0.62 0.22 272 / 0.15);
+  color: oklch(0.68 0.24 272);
+}
+
+/* ─── Input focus ring ────────────────────────────────────── */
+input:focus-visible, textarea:focus-visible, select:focus-visible {
+  outline: none;
+  border-color: oklch(var(--ring));
+  box-shadow: 0 0 0 3px oklch(var(--ring) / 0.15);
+}
